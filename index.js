@@ -31,6 +31,7 @@ async function run() {
     
     const database = client.db("Transport");
     const data = database.collection("data");
+    const data2 = database.collection("country");
     // const result = await haiku.insertOne(doc);
     
    
@@ -52,12 +53,19 @@ async function run() {
             const result = await cursor.toArray();
             res.send(result);
   })
+  app.get('/country',async (req,res)=>{
+    const cursor = data2.find();
+            const result = await cursor.toArray();
+            res.send(result);
+  })
 
-//   app.get('/ad/:id', async (req, res) => {
-//     const id = req.params.id;
-//     const query = { _id: new ObjectId(id) }
-//     const result = await data.findOne(query);
+//   app.get('/Country/:Country', async (req, res) => {
+//     const ids = req.params.Country;
+//     console.log(ids)
+//     const query = { Country:  (ids) }
+//     const result = await data.find(query);
 //     res.send(result);
+//     console.log(result)
 // })
 
 app.put('/up/:idd', async (req, res) => {
