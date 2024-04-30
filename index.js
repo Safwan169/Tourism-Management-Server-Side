@@ -32,15 +32,9 @@ async function run() {
     const database = client.db("Transport");
     const data = database.collection("data");
     const data2 = database.collection("country");
-    // const result = await haiku.insertOne(doc);
-    
-   
   
-    // Send a ping to confirm a successful connection
-    // await client.db("admin").command({ ping: 1 });
-    // app.get('/ad',async(req,res)=>{
-    //   res.send('daf')
-    // })
+
+    
 
     app.post('/ad', async (req, res) => {
       const datas = req.body;
@@ -103,7 +97,6 @@ app.delete('/de/:id', async (req, res) => {
 })
 
 
-    // console.log("Pinged your deployment. You successfully connected to MongoDB!");
   } finally {
     // Ensures that the client will close when you finish/error
     // await client.close();
