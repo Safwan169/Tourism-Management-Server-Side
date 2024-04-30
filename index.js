@@ -30,23 +30,27 @@ async function run() {
     await client.connect();
     
     const database = client.db("Transport");
+    // all data collection
     const data = database.collection("data");
     const data2 = database.collection("country");
   
 
-    
 
+    // all data
     app.post('/ad', async (req, res) => {
       const datas = req.body;
       console.log(datas);
       const result = await data.insertOne(datas);
       res.send(result);
   })
+
+  // get all data
   app.get('/ad',async (req,res)=>{
     const cursor = data.find();
             const result = await cursor.toArray();
             res.send(result);
   })
+  //  get country data
   app.get('/country',async (req,res)=>{
     const cursor = data2.find();
             const result = await cursor.toArray();
@@ -61,7 +65,7 @@ async function run() {
 //     res.send(result);
 //     console.log(result)
 // })
-
+// update data
 app.put('/up/:idd', async (req, res) => {
   const id = req.params.idd;
   console.log(id)
