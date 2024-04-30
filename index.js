@@ -32,6 +32,7 @@ async function run() {
     const database = client.db("Transport");
     // all data collection
     const data = database.collection("data");
+    // country collection
     const data2 = database.collection("country");
   
 
