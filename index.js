@@ -1,12 +1,16 @@
 const express = require('express');
 const app = express();
-const cors=require('cors');
+const cors =require('cors');
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 require('dotenv').config()
-const port =process.env.PORT || 3028;
+const port =process.env.PORT || 5000;
 
 // middleware
-app.use(cors());
+app.use(cors({
+origin : ["http://localhost:5173","https://tourism-management-ac9b5.web.app"],
+methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]
+
+}));
 app.use(express.json());
 
 
@@ -27,7 +31,6 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
-    await client.connect();
     
     const database = client.db("Transport");
     // all data collection
@@ -35,7 +38,12 @@ async function run() {
     // country collection
     const data2 = database.collection("country");
   
-
+// get all data
+app.get('/ad',async (req,res)=>{
+  const cursor = data.find();
+          const result = await cursor.toArray();
+          res.send(result);
+})
 
     // all data
     app.post('/ad', async (req, res) => {
@@ -45,12 +53,7 @@ async function run() {
       res.send(result);
   })
 
-  // get all data
-  app.get('/ad',async (req,res)=>{
-    const cursor = data.find();
-            const result = await cursor.toArray();
-            res.send(result);
-  })
+  
   //  get country data
   app.get('/country',async (req,res)=>{
     const cursor = data2.find();
@@ -84,7 +87,8 @@ app.put('/up/:idd', async (req, res) => {
           visitors: datas1.visitors,
           location: datas1.location,
           Country: datas1.Country,
-          description: datas1.description
+          description: datas1.description,
+          spot: datas1.spot
       }
   }
 
@@ -104,7 +108,6 @@ app.delete('/de/:id', async (req, res) => {
 
   } finally {
     // Ensures that the client will close when you finish/error
-    // await client.close();
   }
 }
 run().catch(console.dir);
