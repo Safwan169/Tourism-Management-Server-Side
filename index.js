@@ -7,7 +7,7 @@ const port =process.env.PORT || 5000;
 
 // middleware
 app.use(cors({
-origin : ["http://localhost:5173","https://tourism-management-ac9b5.web.app"],
+origin : ["http://localhost:5173","https://tourist-1f759.web.app","https://tourism-management-ac9b5.web.app"],
 methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]
 
 }));
