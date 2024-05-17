@@ -61,14 +61,6 @@ app.get('/ad',async (req,res)=>{
             res.send(result);
   })
 
-//   app.get('/Country/:Country', async (req, res) => {
-//     const ids = req.params.Country;
-//     console.log(ids)
-//     const query = { Country:  (ids) }
-//     const result = await data.find(query);
-//     res.send(result);
-//     console.log(result)
-// })
 // update data
 app.put('/up/:idd', async (req, res) => {
   const id = req.params.idd;
